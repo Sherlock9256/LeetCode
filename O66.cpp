@@ -1,0 +1,14 @@
+#include<vector>
+using namespace std;
+class Solution {
+public:
+    vector<int> constructArr(vector<int>& a) {
+        vector<int> b(a.size());
+        vector<int> c(a.size());
+        b[0]=1;
+        c[a.size()-1]=1;
+        for(int i = 0;i<a.size()-1;i++){
+            b[i+1] = a[i]*b[i];
+        }
+    }
+};

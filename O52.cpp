@@ -1,0 +1,27 @@
+#include<iostream>
+using namespace std;
+struct ListNode {
+    int val;
+    ListNode *next;
+    ListNode(int x) : val(x), next(NULL) {}
+};
+ 
+class Solution {
+public:
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        ListNode *A,*B;
+        A=headA;
+        B=headB;
+        while(A!=B){
+            if(!A){
+                A=headB;
+            }
+            if(!B){
+                B=headA;
+            }
+            A=A->next;
+            B=B->next;
+        }
+        return A;
+    }
+};
