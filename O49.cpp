@@ -20,6 +20,7 @@ public:
                 five++;
             }
         }
+        return rec[n-1];
     }
 };
 class Solution {

@@ -1,5 +1,21 @@
 #include<vector>
+#include<algorithm>
 using namespace std;
+
+class Solution {
+public:
+    int findUnsortedSubarray(vector<int>& nums) {
+        vector<int> tmp = nums;
+        sort(nums.begin(),nums.end());
+        int left=0,right=nums.size()-1;
+        while(left<right&&tmp[left]==nums[left])left++;
+        while(left<right&&tmp[right]==nums[right])right--;
+        if(left==right)return 0;
+        return right-left+1;
+    }
+};
+
+
 class Solution {
 public:
     int findUnsortedSubarray(vector<int>& nums) {

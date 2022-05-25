@@ -1,5 +1,55 @@
 #include<string>
 using namespace std;
+
+class Solution {
+public:
+    string toHex(int num) {
+        unsigned int tmp = num;
+        unsigned int mod = 15;
+        string ret="";
+        unsigned int left;
+        do{
+            left = tmp&mod;
+            if(left<10){
+                ret+=to_string(left);
+            }else{
+                ret+=(left-10+'a');
+            }
+            tmp>>=4;
+        }while(tmp);
+        reverse(ret.begin(),ret.end());
+        return ret;
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 class Solution {
 public:
     string toHex(int num) {

@@ -6,6 +6,36 @@ using namespace std;
 class Solution {
 public:
     vector<int> diffWaysToCompute(string expression) {
+
+
+        
+        
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+class Solution {
+public:
+    vector<int> diffWaysToCompute(string expression) {
         //decode
         vector<int> ret;
         cout<<expression.length();

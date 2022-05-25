@@ -8,20 +8,23 @@ public:
     }
     int help(string& str,int idx,int len){
         if(idx==len)return 1;
-        if(str[idx]!=1&&str[idx]!=2){
+        if(str[idx]!='1'&&str[idx]!='2'){
+            cout<<3;
             return help(str,idx+1,len);
         }else{
-            if(str[idx]==1){
+            if(str[idx]=='1'){
+                cout<<2;
                 if(idx<len-1){
                     return help(str,idx+1,len)+help(str,idx+2,len);
                 }else{
                     return help(str,idx+1,len);
                 }
-            }else if(str[idx]==2){
+            }else{
+                cout<<1;
                 if(idx<len-1&&str[idx+1]<='5'&&'0'<=str[idx+1]){
-
+                    return help(str,idx+1,len)+help(str,idx+2,len);
                 }else{
-
+                    return help(str,idx+1,len);
                 }
             }
         }

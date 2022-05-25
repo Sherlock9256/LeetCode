@@ -1,6 +1,34 @@
 #include<vector>
 #include<algorithm>
 using namespace std;
+
+class Solution {
+public:
+    int minMoves2(vector<int>& nums) {
+        
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 class Solution_1 {
 public:
     int minMoves2(vector<int>& nums) {

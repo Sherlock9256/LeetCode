@@ -2,6 +2,85 @@
 #include<vector>
 #include<algorithm>
 using namespace std;
+
+
+
+class Solution {
+public:
+    int numSquares(int n) {
+        vector<int> rec;
+        for(int i = sqrt(n);i>=1;i--){
+            if(i*i<=n){
+                rec.push_back(i*i);
+            }
+        }
+        vector<int> ret(n+1,INT_MAX);
+        ret[0]=0;
+        for(int i = )
+    }
+};
+
+class Solution {
+    int ret = INT_MAX;
+public:
+    int numSquares(int n) {
+        vector<int> rec;
+        for(int i = sqrt(n);i>=1;i--){
+            if(i*i<=n){
+                rec.push_back(i*i);
+            }
+        }
+        vector<int> stk;
+        help(stk,rec,n,0,0);
+        return ret;
+    }
+    void help(vector<int>& stk,vector<int>& rec,int n,int sum,int idx){
+        if(n==sum){
+            ret  = ret<stk.size()?ret:stk.size();
+            return;
+        }
+        if(stk.size()>=ret){
+            return;
+        }
+        for(int i = idx;i<rec.size();i++){
+            if(sum+rec[i]<=n){
+                stk.push_back(rec[i]);
+                help(stk,rec,n,sum+rec[i],i);
+                stk.pop_back();
+            }
+        }
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 class Solution_my {
 public:
     int numSquares(int n) {

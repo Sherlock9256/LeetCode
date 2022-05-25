@@ -27,8 +27,6 @@ public:
         }else{
             tmp->next = l1;
         }
-
-
         return pre->next;
     }
 };

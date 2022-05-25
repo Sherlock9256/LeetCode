@@ -10,6 +10,52 @@ class Solution {
     char right = ']';
 public:
     string decodeString(string s) {
+        vector<string> strstk;
+        vector<int> intstk;
+        strstk.push_back("");
+        intstk.push_back(1);
+        int idx = 0;
+        int len = s.length();
+        while(idx<len){
+            char chr = s[idx];
+            if(chr>=a&&chr<=z){
+                strstk.back()+=chr;
+            }else if(chr>=zero&&chr<=nine){
+                string tmp="";
+                do{
+                    tmp+=s[idx];
+                    idx++;
+                }while(s[idx]>=zero&&s[idx]<=nine);
+                //过滤了[
+                intstk.push_back(stoi(tmp));
+                strstk.push_back("");
+            }else{
+                //]
+                int cnt = intstk.back();
+                string tmp = strstk.back();
+                intstk.pop_back();
+                strstk.pop_back();
+                while(cnt){
+                    strstk.back()+=tmp;
+                    cnt--;
+                }
+            }
+            idx++;
+        }
+        return strstk.back();
+    }
+};
+
+
+class Solution {
+    char a='a';
+    char z='z';
+    char zero = '0';
+    char nine = '9';
+    char left = '[';
+    char right = ']';
+public:
+    string decodeString(string s) {
         vector<string> strstk={""};
         vector<int> intstk={1};
         

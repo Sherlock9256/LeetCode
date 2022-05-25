@@ -5,6 +5,39 @@ class Solution {
 public:
     int largestRectangleArea(vector<int>& heights) {
         heights.push_back(0);
+        heights.insert(heights.begin(),0);
+        vector<int> stk;
+        int ret=0;
+        for(int i= 0;i<heights.size();i++){
+            if(stk.empty()){
+                stk.push_back(i);
+            }else{
+                if(heights[stk.back()]>=heights[i]){
+                    while(!stk.empty()&&heights[stk.back()]>=heights[i]){
+                        int tmp = stk.back();
+                        stk.pop_back();
+                        if(!stk.empty()){
+                            tmp = (i-stk.back()-1)*heights[tmp];
+                            ret=ret>tmp?ret:tmp;
+                        }
+                    }
+                    stk.push_back(i);
+                }else{
+                    stk.push_back(i);
+                }
+            }
+        }
+        return ret;
+    }
+};
+
+
+
+
+class Solution {
+public:
+    int largestRectangleArea(vector<int>& heights) {
+        heights.push_back(0);
         vector<int> stk;
         int ret = 0;
         for(int i = 0;i<heights.size();i++){

@@ -2,8 +2,6 @@
 #include<unordered_map>
 using namespace std;
 class Solution {
-    unordered_map<int,int> len2cnt;
-    int tot;
 public:
     int cuttingRope(int n) {
         if(n==2) return 1;

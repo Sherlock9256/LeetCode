@@ -3,9 +3,27 @@
 #include<algorithm>
 using namespace std;
 
-class Solution_second{
+class Solution{
+    vector<vector<int>> ret;
+public:
     vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
-        
+        vector<int> tmp;
+        help(tmp,candidates,0,target,0);
+        return ret;
+    }
+    void help(vector<int>& tmp,vector<int>& candidates,int cur,int target,int start){
+        if(cur==target){
+            ret.push_back(tmp);
+            return;
+        }
+        if(cur>target){
+            return;
+        }
+        for(int i = start;i<candidates.size();i++){
+            tmp.push_back(candidates[i]);
+            help(tmp,candidates,cur+candidates[i],target,i);
+            tmp.pop_back();
+        }
     }
 };
 

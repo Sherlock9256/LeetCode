@@ -10,5 +10,12 @@ public:
         for(int i = 0;i<a.size()-1;i++){
             b[i+1] = a[i]*b[i];
         }
+        for(int i = a.size()-1;i>0;i--){
+            c[i-1] = a[i]*c[i];
+        }
+        for(int i = 0;i<a.size();i++){
+            b[i]*=c[i];
+        }
+        return b;
     }
 };

@@ -10,8 +10,10 @@ class Solution {
 public:
     TreeNode* mirrorTree(TreeNode* root) {
         if(!root) return nullptr;
-        root->left = mirrorTree(root->right);
-        root->right = mirrorTree(root->left);
+        TreeNode* l = mirrorTree(root->right);
+        TreeNode* r = mirrorTree(root->left);
+        root->left = l;
+        root->right = r;
         return root;
     }
 };

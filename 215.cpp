@@ -1,7 +1,21 @@
 #include<vector>
 #include<iostream>
 #include<algorithm>
+#include<queue>
 using namespace std;
+class Solution {
+public:
+    int findKthLargest(vector<int>& nums, int k) {
+        priority_queue<int,vector<int>,greater<int>> hp;
+        for(auto& s:nums){
+            hp.push(s);
+            if(hp.size()>k){
+                hp.pop();
+            }
+        }
+        return hp.top();
+    }
+};
 class Solution {
 public:
     int findKthLargest(vector<int>& nums, int k) {

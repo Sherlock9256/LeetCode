@@ -3,6 +3,47 @@ using namespace std;
 class Solution {
 public:
     bool isMatch(string s, string p) {
+        return help(s,p,0,0);
+    }
+    bool help(string& s,string& p,int i,int j){
+        if(i==s.length()&&j==p.length()){
+            return true;
+        }else if(i==s.length()){
+            if(j<p.length()-1&&p[j+1]=='*'){
+                return help(s,p,i,j+2);
+            }else{
+                return false;
+            }
+        }else if(j==p.length()){
+            return false;
+        }
+
+        if(p[j]=='.'){
+            if(j<p.length()-1&&p[j+1]=='*'){
+                return help(s,p,i+1,j)||help(s,p,i,j+2);
+            }else{
+                return help(s,p,i+1,j+1);
+            }
+        }else{
+            if(j<p.length()-1&&p[j+1]=='*'){
+                if(s[i]==p[j]){
+                    return help(s,p,i+1,j)||help(s,p,i,j+2);
+                }else{
+                    return help(s,p,i,j+2);
+                }
+            }else{
+                if(s[i]==p[j]){
+                    return help(s,p,i+1,j+1);
+                }else{
+                    return false;
+                }
+            }
+        }
+    }
+};
+class Solution {
+public:
+    bool isMatch(string s, string p) {
         return help(s,p,0,0,s.length(),p.length());
     }
     bool help(string&s, string&p,int s_idx,int p_idx,int s_len,int p_len){

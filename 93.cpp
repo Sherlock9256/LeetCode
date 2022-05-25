@@ -4,6 +4,51 @@
 using namespace std;
 
 class Solution {
+    vector<string> ret;
+    vector<int> rec;
+public:
+    vector<string> restoreIpAddresses(string s) {
+        help(s,0,0);
+        return ret;
+    }
+    void help(string& s, int cnt,int idx){
+        if(cnt==4&&idx==s.length()){
+            string tmp="";
+            for(int i = 0;i<4;i++){
+                tmp+=to_string(rec[i]);
+                if(i<3)tmp+=".";
+            }
+            ret.push_back(tmp);
+            return;
+        }
+        if(idx==s.length()){
+            return;
+        }
+        if(cnt==4){
+            return;
+        }
+        if(s[idx]=='0'){
+            rec.push_back(0);
+            help(s,cnt+1,idx+1);
+            rec.pop_back();
+            return;
+        }
+        int tmp=0;
+        for(int i = idx;i<s.length();i++){
+            tmp = tmp*10 + s[i]-'0';
+            if(tmp>0&&tmp<256){
+                rec.push_back(tmp);
+                help(s,cnt+1,i+1);
+                rec.pop_back();
+            }else{
+                break;
+            }
+        }
+    }
+};
+
+
+class Solution {
 public:
     vector<string> restoreIpAddresses(string s) {
         int len = s.length();

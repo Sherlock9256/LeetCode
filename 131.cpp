@@ -1,6 +1,42 @@
 #include<vector>
+#include<unordered_map>
 #include<string>
 using namespace std;
+
+class Solution {
+    unordered_map<int,unordered_map<int,bool>> mp;
+    vector<vector<string>> ret;
+public:
+    vector<vector<string>> partition(string s) {
+        vector<string> cur ;
+        help(s,cur,0);
+        return ret;
+    }
+    void help(string& s,vector<string>& cur,int idx){
+        if(idx==s.length()){
+            ret.push_back(cur);
+            return;
+        }
+        for(int i = idx;i<s.length();i++){
+            if(check(s,idx,i)){
+                cur.push_back(s.substr(idx,i-idx+1));
+                help(s,cur,i+1);
+                cur.pop_back();
+            }
+        }
+    }
+    bool check(string& s,int i ,int j){
+        if(i>=j)return true;
+        if(mp.count(i)&&mp[i].count(j)){
+            return mp[i][j];
+        }else{
+            bool tmp = check(s,i+1,j-1);
+            tmp = tmp&&s[i]==s[j];
+            mp[i][j]=tmp;
+            return tmp;
+        }
+    }
+};
 
 class Solution {
 public:

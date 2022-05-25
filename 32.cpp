@@ -1,6 +1,39 @@
 #include<string>
 #include<vector>
 using namespace std;
+class Solution {
+public:
+    int longestValidParentheses(string s) {
+        int n = s.length();
+        vector<int> rec(n,0);
+        int ret=0;
+        for(int i = 0;i<s.length();i++){
+            if(s[i]=='('){
+                rec[i]=0;
+            }else{
+                if(i>0&&s[i-1]=='('){
+                    if(i-2>=0){
+                        rec[i]=rec[i-2]+2;
+                    }else{
+                        rec[i]=2;
+                    }
+                }else if(i>0&&s[i-1]==')'){
+                    if(i-rec[i-1]-1>=0&&s[i-rec[i-1]-1]=='('){
+                        if(i-rec[i-1]-2>=0){
+                            rec[i] = rec[i-rec[i-1]-2]+rec[i-1]+2;
+                        }else{
+                            rec[i] = rec[i-1]+2;
+                        }
+                    }
+                }else{
+                    rec[i]=0;
+                }
+            }
+            ret = ret>rec[i]?ret:rec[i];
+        }
+        return ret;
+    }
+};
 
 class Solution {
 public:

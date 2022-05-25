@@ -51,6 +51,9 @@ public:
         for (auto it = mp.begin(); it != mp.end(); ++it) {
             ans.emplace_back(it->second);
         }
+        for(auto [a,b] : mp){
+            ans.emplace_back(b);
+        }
         return ans;
     }
 };

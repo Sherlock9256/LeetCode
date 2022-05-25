@@ -14,6 +14,9 @@ public:
                 }
             }
             if(len==0)break;
+            if(len>strs[i].length()){
+                len=strs[i].length();
+            }
         }
         return ret.substr(0,len);
     }

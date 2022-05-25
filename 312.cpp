@@ -8,6 +8,54 @@ class Solution {
 public:
     int maxCoins(vector<int>& nums) {
         int n = nums.size();
+        vector<vector<int>> dp(n,vector<int>(n,-1));
+        int ret;
+        ret = help(dp,0,n-1,nums);
+        return ret;
+    }
+    int help(vector<vector<int>>& dp,int left,int right,vector<int>& nums){
+        if(left>right)return 0;
+        if(dp[left][right]!=-1)return dp[left][right];
+        int ret=0;
+        int tmp = 0;
+        int l_num,r_num;
+        l_num = left==0?1:nums[left-1];
+        r_num = right==nums.size()-1?1:nums[right+1];
+        for(int i = left;i<=right;i++){
+            tmp = nums[i]*l_num*r_num + help(dp,i+1,right,nums) + help(dp,left,i-1,nums);
+            ret=ret>tmp?ret:tmp;
+        }
+        dp[left][right]=ret;
+        return ret;
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+class Solution {
+public:
+    int maxCoins(vector<int>& nums) {
+        int n = nums.size();
         vector<vector<int>> rec(n+2,vector<int>(n+2,0));
         return search(rec,nums,0,n+1,n);
     }

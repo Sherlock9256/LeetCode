@@ -5,6 +5,49 @@ class Solution {
 public:
     int maximalRectangle(vector<vector<char>>& matrix) {
         int m = matrix.size();
+        if(m==0)return 0;
+        int n = matrix[0].size();
+        vector<int> heights(n+2,0);
+        vector<int> stk;
+        int ret=0;
+        int tmp;
+        for(int i =0;i<m;i++){
+            for(int j = 0;j<n;j++){
+                if(matrix[i][j]=='1'){
+                    heights[j+1]++;
+                }else{
+                    heights[j+1]=0;
+                }
+                // cout<<heights[j+1];
+            }
+            // cout<<endl;
+            stk.clear();
+            for(int j=0;j<heights.size();j++){
+                if(stk.empty()){
+                    stk.push_back(j);
+                }else{
+                    while(!stk.empty()&&heights[stk.back()]>=heights[j]){
+                        tmp = stk.back();
+                        stk.pop_back();
+                        if(!stk.empty()){
+                            tmp = heights[tmp]*(j-stk.back()-1);
+                            ret=ret>tmp?ret:tmp;
+                        }
+                    }
+                    stk.push_back(j);
+                }
+            }
+        }
+        return ret;
+    }
+};
+
+
+
+class Solution {
+public:
+    int maximalRectangle(vector<vector<char>>& matrix) {
+        int m = matrix.size();
         int n = matrix[0].size();
         vector<int> heights(n+1,0);
         vector<int> stk;

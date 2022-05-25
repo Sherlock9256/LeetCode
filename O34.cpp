@@ -18,12 +18,6 @@ public:
         return ret;
     }
     void help(vector<int>& cur,TreeNode* root,int target,int sum){
-        if(!root||(!root->left&&!root->right)){
-            if(sum==target){
-                ret.push_back(cur);
-            }
-            return;
-        }
         if(!root){
             return;
         }
@@ -36,12 +30,8 @@ public:
             return;
         }
         cur.push_back(root->val);
-        if(root->left){
-            help(cur,root->left,target,sum+root->val);
-        }
-        if(root->right){
-            help(cur,root->right,target,sum+root->val);
-        }
+        help(cur,root->left,target,sum+root->val);
+        help(cur,root->right,target,sum+root->val);
         cur.pop_back();
     }
 };

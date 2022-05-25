@@ -2,6 +2,46 @@
 #include<unordered_map>
 #include<string>
 using namespace std;
+
+class Solution {
+public:
+    string minWindow(string s, string t) {
+        unordered_map<char,int> smap,tmap;
+        for(auto&chr:t){
+            tmap[chr]++;
+        }
+        int left=0;
+        int right=0;
+        int left_p=0;
+        int len=INT_MAX;
+        while(right<s.length()){
+            while(!check(smap,tmap)&&right<s.length()){
+                smap[s[right]]++;
+                right++;
+            }
+            while(check(smap,tmap)){
+                int tmp=right-left;
+                if(len>tmp){
+                    len = tmp;
+                    left_p=left;
+                }
+                smap[s[left]]--;
+                left++;
+            }
+        }
+        if(left==0)return "";
+        return s.substr(left_p,len);
+    }
+    bool check(unordered_map<char,int>& smap,unordered_map<char,int>& tmap){
+        for(auto [chr,cnt]:tmap){
+            if(smap[chr]<cnt){
+                return false;
+            }
+        }
+        return true;
+    }
+};
+
 class Solution {
 public:
     string minWindow(string s, string t) {

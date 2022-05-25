@@ -14,6 +14,48 @@ public:
 
     // Encodes a tree to a single string.
     string serialize(TreeNode* root) {
+        string ret;
+        if(!root){
+            ret="NONE";
+        }else{
+            ret=to_string(root->val);
+            ret = ret+','+serialize(root->left)+','+serialize(root->right);
+        }
+        return ret;
+    }
+
+    // Decodes your encoded data to tree.
+    TreeNode* deserialize(string data) {
+        return myde(data);
+    }
+    TreeNode* myde(string& data){
+        if(data.length()==0)return nullptr;
+        string tmp;
+        int idx=0;
+        while(data[idx]!=','&&idx<data.length()){
+            idx++;
+        }
+        tmp = data.substr(0,idx);
+        // cout<<tmp<<endl;
+        TreeNode* ret;
+        if(tmp=="NONE"){
+            ret = nullptr;
+            data.erase(0,idx+1);
+        }else{
+            ret = new TreeNode(std::stoi(tmp));
+            data.erase(0,idx+1);
+            ret->left = myde(data);
+            ret->right = myde(data);
+        }
+        return ret;
+    }
+};
+
+class Codec {
+public:
+
+    // Encodes a tree to a single string.
+    string serialize(TreeNode* root) {
         vector<int> rec;
         queue<TreeNode*> que;
         int cnt = 1;

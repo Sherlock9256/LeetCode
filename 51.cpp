@@ -3,6 +3,39 @@
 #include<iostream>
 using namespace std;
 
+
+class Solution{
+    vector<vector<string>> ret;
+public:
+    vector<vector<string>> solveNQueens(int n) {
+        vector<string> cur(n,string(n,'.'));
+        vector<bool> col(n,true);
+        vector<bool> diag(n*2-1,true);
+        vector<bool> undiag(n*2-1,true);
+        help(cur,col,diag,undiag,0,n);
+        return ret;
+    }
+    void help(vector<string>& cur,vector<bool>&col,vector<bool>& diag,vector<bool>& undiag,int idx,int n){
+        if(idx==n){
+            ret.push_back(cur);
+            return;
+        }
+        for(int i = 0;i<n;i++){
+            if(col[i]&&diag[i+idx]&&undiag[n-1-i+idx]){
+                cur[idx][i]='Q';
+                col[i]=false;
+                diag[i+idx]=false;
+                undiag[n-1-i+idx]=false;
+                help(cur,col,diag,undiag,idx+1,n);
+                cur[idx][i]='.';
+                col[i]=true;
+                diag[i+idx]=true;
+                undiag[n-1-i+idx]=true;
+            }
+        }
+    }
+};
+
 class Solution{
 public:
 

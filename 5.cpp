@@ -29,5 +29,6 @@ public:
                 r++;
             }
         }
+    return s.substr(left,cnt);
     }
 };

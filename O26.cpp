@@ -23,7 +23,7 @@ public:
         if(!B){
             return true;
         }
-        if(!A||!B){
+        if(!A){
             return false;
         }
         if(A->val!=B->val){

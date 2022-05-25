@@ -19,13 +19,16 @@ public:
         TreeNode* tmp;
         while(!que.empty()){
             tmp=que.front();
+            que.pop();
             if(tmp){
                 ret+=to_string(tmp->val)+',';
             }else{
                 ret+="null,";
             }
-            que.push(tmp->left);
-            que.push(tmp->right);
+            if(tmp){
+                que.push(tmp->left);
+                que.push(tmp->right);
+            }
         }
         return ret.substr(0,ret.length()-1);
     }
@@ -59,6 +62,8 @@ public:
                 tmp->right=new TreeNode(decode(splited[idx]));
             }
             idx++;
+            que.push(tmp->left);
+            que.push(tmp->right);
         }
         return root;
     }
@@ -86,7 +91,7 @@ public:
         if(str[0]=='-'){
             return -ret;
         }else{
-            ret+=(str[i]-'0')*base;
+            ret+=(str[0]-'0')*base;
             return ret;
         }
     }

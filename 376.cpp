@@ -3,6 +3,61 @@ using namespace std;
 class Solution {
 public:
     int wiggleMaxLength(vector<int>& nums) {
+        int n = nums.size();
+        if(n<2)return n;
+        int sgn = nums[1]-nums[0];
+        int top = nums[1];
+        int cur;
+        int tmp;
+        int ret = sgn==0?1:2;
+        for(int i = 2;i<n;i++){
+            cur=nums[i];
+            tmp = sgn*(cur-top);
+            if(tmp>0){
+                top = cur;
+            }else if(tmp<0){
+                sgn = cur-top;
+                top = cur;
+                ret++;
+            }else if((cur-top)!=0){
+                sgn = cur-top;
+                top = cur;
+                ret++;
+            }
+        }
+        return ret;
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+class Solution {
+public:
+    int wiggleMaxLength(vector<int>& nums) {
         int cur = nums[0];
         int pre = 0;
         int cnt = 1;

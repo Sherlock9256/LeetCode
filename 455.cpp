@@ -6,6 +6,40 @@ using namespace std;
 class Solution {
 public:
     int findContentChildren(vector<int>& g, vector<int>& s) {
+        int cnt=0;
+        sort(g.begin(),g.end());
+        sort(s.begin(),s.end());
+        int idx=0;
+        for(auto& ss:s){
+            if(idx==g.size())break;
+            if(ss>=g[idx]){
+                cnt++;
+                idx++;
+            }
+        }
+
+        return cnt;
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+class Solution {
+public:
+    int findContentChildren(vector<int>& g, vector<int>& s) {
         sort(g.begin(),g.end());
         sort(s.begin(),s.end());
         int i=g.size()-1,j=s.size()-1;

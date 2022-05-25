@@ -11,8 +11,8 @@ public:
             if(i!=0&&nums[i]==nums[i-1])continue;
             int l=i+1,r=nums.size()-1;
             while(l<r){
-                while(l!=i+1&&nums[l]==nums[l-1])l++;
-                while(r!=nums.size()-1&&nums[r]==nums[r+1])r--;
+                while(l<r&&l!=i+1&&nums[l]==nums[l-1])l++;
+                while(l<r&&r!=nums.size()-1&&nums[r]==nums[r+1])r--;
                 if(l>=r)break;
                 int tmp = nums[l]+nums[r]+nums[i];
                 int diff = target-tmp;

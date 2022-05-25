@@ -10,13 +10,19 @@ public:
         int ret = 0;
         int len = s.length();
         int tmp;
+        
         while(r<len){
-            while(chr2cnt[s[r]]==0){
-                tmp = r-l;
+            while(r<len&&chr2cnt[s[r]]==0){
+                tmp = r-l+1;
                 ret = tmp>ret?tmp:ret;
-                r++;
                 chr2cnt[s[r]]++;
+                r++;
+            }
+            while(r<len&&l<=r&&chr2cnt[s[r]]==1){
+                chr2cnt[s[l]]--;
+                l++;
             }
         }
+        return ret;
     }
 };

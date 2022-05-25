@@ -1,6 +1,39 @@
 #include<vector>
 #include<iostream>
 using namespace std;
+
+
+class Solution {
+    vector<vector<int>> ret;
+public:
+    vector<vector<int>> combinationSum3(int k, int n) {
+        vector<int> cur;
+        help(cur,0,n,k,1);
+        return ret;
+    }
+    void help(vector<int>&cur,int sum,int n,int k,int idx){
+        if(cur.size()==k){
+            if(sum==n){
+                ret.push_back(cur);
+            }
+            return;
+        }
+        if(sum>=n)return;
+        for(int i = idx;i<=9;i++){
+            if(sum+i>n)break;
+            cur.push_back(i);
+            help(cur,sum+i,n,k,i+1);
+            cur.pop_back();
+        }
+    }
+};
+
+
+
+
+
+
+
 class Solution {
 public:
     vector<vector<int>> combinationSum3(int k, int n) {

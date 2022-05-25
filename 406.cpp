@@ -2,6 +2,39 @@
 #include<iostream>
 #include<algorithm>
 using namespace std;
+
+class Solution {
+public:
+    vector<vector<int>> reconstructQueue(vector<vector<int>>& people) {
+        vector<vector<int>> ret;
+        sort(people.begin(),people.end(),[](auto& a,auto& b)->bool{
+            return a[0]>b[0]||(a[0]==b[0]&&a[1]<b[1]);
+        });
+        for(auto& p:people){
+            ret.insert(ret.begin()+p[1],p);
+        }
+        return ret;
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 class Solution {
 public:
     vector<vector<int>> reconstructQueue(vector<vector<int>>& people) {

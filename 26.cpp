@@ -10,15 +10,11 @@ public:
         for(int i = 0;i<nums.size();i++){
             if(i!=0&&nums[i]==pre){
                 cnt++;
-                if(pivot==-1){
-                    pivot=i;
-                }
             }else{
                 pre = nums[i];
                 swap(nums[i],nums[pivot]);
                 pivot++;
             }
-            
         }
         int len = nums.size()-cnt;
         while(cnt){

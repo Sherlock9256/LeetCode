@@ -8,21 +8,19 @@ public:
         vector<int> stk;
         int push_idx=0;
         int pop_idx=0;
-        while(pop_idx<popped.size()){
+        while(push_idx<popped.size()){
             do{
                 stk.push_back(pushed[push_idx]);
                 push_idx++;
             }while(push_idx<pushed.size()&&stk.back()!=popped[pop_idx]);
 
-            while(pop_idx<popped.size()&&stk.back()==popped[pop_idx]){
+            while(pop_idx<popped.size()&&!stk.empty()&&stk.back()==popped[pop_idx]){
                 stk.pop_back();
                 pop_idx++;
             }
         }
+        return pop_idx==popped.size();
 
-        while(pop_idx<popped.size()&&popped[pop_idx]!=pu){
-
-        }
     }
 };
 class Solution {

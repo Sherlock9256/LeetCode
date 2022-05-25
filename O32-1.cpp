@@ -29,10 +29,7 @@ public:
                 que.pop();
             }
             cnt = que.size();
-
         }
-
-
         return ret;
     }
 };

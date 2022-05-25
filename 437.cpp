@@ -11,6 +11,32 @@ struct TreeNode {
 };
 
 class Solution {
+    int cnt=0;
+public:
+    int pathSum(TreeNode* root, int targetSum) {
+        if(!root)return 0;
+        help(root,targetSum,0);
+        pathSum(root->left,targetSum);
+        pathSum(root->right,targetSum);
+        return cnt;
+    }
+    void help(TreeNode* root,int targetSum,int sum){
+        if(!root)return;
+        if(sum+root->val==targetSum){
+            cnt++;
+        }
+        help(root->left,targetSum,sum+root->val);
+        help(root->right,targetSum,sum+root->val);
+    }
+};
+
+
+
+
+
+
+
+class Solution {
 public:
     int pathSum(TreeNode* root, int targetSum) {
         if(!root) return 0;

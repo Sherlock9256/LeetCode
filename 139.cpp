@@ -1,6 +1,29 @@
 #include<string>
 #include<vector>
 using namespace std;
+class Solution {
+public:
+    bool wordBreak(string s, vector<string>& wordDict){
+        vector<bool> rec(s.length()+1,false);
+        rec[0]=true;
+        for(int i = 1;i<s.length()+1;i++){
+            for(auto& str:wordDict){
+                int len = str.length();
+                if(i-len>=0){
+                    if(str==s.substr(i-len,len)){
+                        rec[i]=rec[i-len]; //这样是不对的，因为可能有别的word是可以的
+                    }
+                    if(str==s.substr(i-len,len)&&rec[i-len]){
+                        rec[i]=true;
+                        break;
+                    }
+                }
+            }
+        }
+        return rec[s.length()];
+    }
+};
+
 class Solution_1 {
 public:
     bool wordBreak(string s, vector<string>& wordDict) {

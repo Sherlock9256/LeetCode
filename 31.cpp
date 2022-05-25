@@ -2,7 +2,26 @@
 #include<vector>
 #include<algorithm>
 using namespace std;
-
+class Solution {
+public:
+    void nextPermutation(vector<int>& nums) {
+        int tmp=nums.size()-1;
+        bool yes=false;
+        for(int i = tmp;i>=0;i--){
+            if(nums[i]<nums[tmp]){
+                nums[i]^=nums[tmp];
+                nums[tmp]^=nums[i];
+                nums[i]^=nums[tmp];
+                yes=true;
+            }else{
+                tmp=i;
+            }
+        }
+        if(!yes){
+            sort(nums.begin(),nums.end());
+        }
+    }
+};
 
 class Solution_my {
 public:

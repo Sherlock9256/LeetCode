@@ -37,11 +37,11 @@ public:
         for(int i = str.length()-1;i>=0;i--){
             ret+=(str[i]-'0')*base;
             if(neg){
-                if(ret>-(long)INT_MIN){
+                if(ret>-(long)INT_MIN||base>-(long)INT_MIN){
                     return INT_MIN;
                 }
             }else{
-                if(ret>INT_MAX){
+                if(ret>INT_MAX||base>INT_MAX){
                     return INT_MAX;
                 }
             }
